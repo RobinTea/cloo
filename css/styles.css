@@ -290,6 +290,9 @@ input, textarea {
   transition: var(--transition);
   cursor: pointer;
   position: relative;
+  display: block;
+  text-decoration: none;
+  color: inherit;
 }
 
 .drink-card:hover {

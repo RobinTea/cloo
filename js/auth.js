@@ -40,11 +40,14 @@ function register(username, email, password) {
     }
     
     // Create new user
+    // Note: In a production application, passwords should be hashed on the server-side
+    // before storage. Client-side hashing alone is not sufficient security.
+    // This is a demo application using localStorage for simplicity.
     const newUser = {
       id: users.length > 0 ? Math.max(...users.map(u => u.id)) + 1 : 1,
       username,
       email,
-      password // Note: In production, passwords should be hashed
+      password // WARNING: Plain text storage - for demo purposes only
     };
     
     users.push(newUser);

@@ -6,7 +6,7 @@ function createDrinkCard(drink) {
   const hasDiscount = drink.discount > 0;
   
   return `
-    <div class="drink-card" data-id="${drink.id}" onclick="window.location.href='product.html?id=${drink.id}'">
+    <a href="product.html?id=${drink.id}" class="drink-card" data-id="${drink.id}" style="text-decoration: none; color: inherit;">
       <div class="drink-image" style="background: linear-gradient(135deg, ${drink.color} 0%, ${drink.color}88 100%);">
         <div class="drink-placeholder">🥤</div>
       </div>
@@ -23,7 +23,7 @@ function createDrinkCard(drink) {
           `}
         </div>
       </div>
-    </div>
+    </a>
   `;
 }
 

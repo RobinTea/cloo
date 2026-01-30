@@ -56,6 +56,45 @@
     // Initialize cart page
     document.addEventListener('DOMContentLoaded', () => {
       renderCart();
+      
+      // Setup event delegation for cart actions
+      const cartContent = document.getElementById('cart-content');
+      cartContent.addEventListener('click', (e) => {
+        const target = e.target;
+        
+        // Handle remove button
+        if (target.classList.contains('remove-btn')) {
+          const drinkId = parseInt(target.getAttribute('data-id'));
+          removeItem(drinkId);
+        }
+        
+        // Handle quantity buttons
+        if (target.classList.contains('quantity-btn')) {
+          const drinkId = parseInt(target.getAttribute('data-id'));
+          const action = target.getAttribute('data-action');
+          const currentQuantity = parseInt(target.parentElement.querySelector('.quantity-input').value);
+          
+          if (action === 'decrease') {
+            updateItemQuantity(drinkId, currentQuantity - 1);
+          } else if (action === 'increase') {
+            updateItemQuantity(drinkId, currentQuantity + 1);
+          }
+        }
+        
+        // Handle checkout button
+        if (target.classList.contains('checkout-btn')) {
+          checkout();
+        }
+      });
+      
+      // Handle quantity input changes
+      cartContent.addEventListener('change', (e) => {
+        if (e.target.classList.contains('quantity-input')) {
+          const drinkId = parseInt(e.target.getAttribute('data-id'));
+          const newQuantity = parseInt(e.target.value);
+          updateItemQuantity(drinkId, newQuantity);
+        }
+      });
     });
 
     function renderCart() {
@@ -91,21 +130,21 @@
               <p class="cart-item-type">${drink.type}</p>
             </div>
             <div class="cart-item-quantity">
-              <button class="quantity-btn" onclick="updateItemQuantity(${drink.id}, ${item.quantity - 1})">−</button>
+              <button class="quantity-btn" data-id="${drink.id}" data-action="decrease">−</button>
               <input 
                 type="number" 
                 class="quantity-input" 
                 value="${item.quantity}" 
                 min="1" 
                 max="${drink.amount}"
-                onchange="updateItemQuantity(${drink.id}, this.value)"
+                data-id="${drink.id}"
               >
-              <button class="quantity-btn" onclick="updateItemQuantity(${drink.id}, ${item.quantity + 1})">+</button>
+              <button class="quantity-btn" data-id="${drink.id}" data-action="increase">+</button>
             </div>
             <div class="cart-item-price">
               $${itemTotal.toFixed(2)}
             </div>
-            <button class="remove-btn" onclick="removeItem(${drink.id})">Remove</button>
+            <button class="remove-btn" data-id="${drink.id}">Remove</button>
           </div>
         `;
       }).join('');
@@ -123,7 +162,7 @@
             <span>Total:</span>
             <span>$${total.toFixed(2)}</span>
           </div>
-          <button class="checkout-btn" onclick="checkout()">Proceed to Checkout</button>
+          <button class="checkout-btn">Proceed to Checkout</button>
         </div>
       `;
     }
