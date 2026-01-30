@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register - Cloo</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="header-left">
+      <button class="hamburger-menu" aria-label="Open menu">☰</button>
+      <div class="logo">CLOO</div>
+    </div>
+    <div class="header-right">
+      <button class="account-icon" aria-label="Account">👤</button>
+      <div class="cart-wrapper">
+        <button class="cart-icon" aria-label="Cart">🛒</button>
+        <span class="cart-badge">0</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Side Navigation Menu -->
+  <div class="menu-overlay"></div>
+  <nav class="side-menu">
+    <div class="menu-header">
+      <h2>Menu</h2>
+      <button class="close-menu" aria-label="Close menu">×</button>
+    </div>
+    <ul class="menu-links">
+      <li><a href="index.html">🏠 Home</a></li>
+      <li><a href="search.html">🔍 Search</a></li>
+      <li><a href="index.html#products">🥤 All Drinks</a></li>
+      <li><a href="cart.html">🛒 Cart</a></li>
+      <li><a href="account.html">👤 Account</a></li>
+    </ul>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <div class="auth-container">
+      <h1 class="auth-title">Register</h1>
+      <form id="register-form">
+        <div class="form-group">
+          <label for="username">Username</label>
+          <input 
+            type="text" 
+            id="username" 
+            class="form-input" 
+            required
+            placeholder="Choose a username"
+          >
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input 
+            type="email" 
+            id="email" 
+            class="form-input" 
+            required
+            placeholder="Enter your email"
+          >
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input 
+            type="password" 
+            id="password" 
+            class="form-input" 
+            required
+            placeholder="Choose a password"
+            minlength="6"
+          >
+        </div>
+        <div class="form-group">
+          <label for="confirm-password">Confirm Password</label>
+          <input 
+            type="password" 
+            id="confirm-password" 
+            class="form-input" 
+            required
+            placeholder="Confirm your password"
+          >
+        </div>
+        <button type="submit" class="submit-btn">Register</button>
+      </form>
+      <div class="auth-link">
+        Already have an account? <a href="login.html">Login here</a>
+      </div>
+    </div>
+  </main>
+
+  <!-- Scripts -->
+  <script src="js/drinks.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    // Initialize register page
+    document.addEventListener('DOMContentLoaded', () => {
+      // Redirect if already logged in
+      if (window.authModule.isLoggedIn()) {
+        window.location.href = 'account.html';
+        return;
+      }
+
+      const registerForm = document.getElementById('register-form');
+
+      registerForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        const username = document.getElementById('username').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const password = document.getElementById('password').value;
+        const confirmPassword = document.getElementById('confirm-password').value;
+
+        // Validation
+        if (!username || !email || !password || !confirmPassword) {
+          window.uiModule.showToast('Please fill in all fields', 'error');
+          return;
+        }
+
+        if (password.length < 6) {
+          window.uiModule.showToast('Password must be at least 6 characters', 'error');
+          return;
+        }
+
+        if (password !== confirmPassword) {
+          window.uiModule.showToast('Passwords do not match', 'error');
+          return;
+        }
+
+        // Email validation
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+          window.uiModule.showToast('Please enter a valid email', 'error');
+          return;
+        }
+
+        const result = window.authModule.register(username, email, password);
+
+        if (result.success) {
+          window.uiModule.showToast('Registration successful!', 'success');
+          // Auto-login after registration
+          window.authModule.login(email, password);
+          setTimeout(() => {
+            window.location.href = 'account.html';
+          }, 1000);
+        } else {
+          window.uiModule.showToast(result.message, 'error');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

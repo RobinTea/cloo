@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shopping Cart - Cloo</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="header-left">
+      <button class="hamburger-menu" aria-label="Open menu">☰</button>
+      <div class="logo">CLOO</div>
+    </div>
+    <div class="header-right">
+      <button class="account-icon" aria-label="Account">👤</button>
+      <div class="cart-wrapper">
+        <button class="cart-icon" aria-label="Cart">🛒</button>
+        <span class="cart-badge">0</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Side Navigation Menu -->
+  <div class="menu-overlay"></div>
+  <nav class="side-menu">
+    <div class="menu-header">
+      <h2>Menu</h2>
+      <button class="close-menu" aria-label="Close menu">×</button>
+    </div>
+    <ul class="menu-links">
+      <li><a href="index.html">🏠 Home</a></li>
+      <li><a href="search.html">🔍 Search</a></li>
+      <li><a href="index.html#products">🥤 All Drinks</a></li>
+      <li><a href="cart.html">🛒 Cart</a></li>
+      <li><a href="account.html">👤 Account</a></li>
+    </ul>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <div class="cart-container">
+      <h1 class="cart-title">Shopping Cart</h1>
+      <div id="cart-content"></div>
+    </div>
+  </main>
+
+  <!-- Scripts -->
+  <script src="js/drinks.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    // Initialize cart page
+    document.addEventListener('DOMContentLoaded', () => {
+      renderCart();
+      
+      // Setup event delegation for cart actions
+      const cartContent = document.getElementById('cart-content');
+      cartContent.addEventListener('click', (e) => {
+        const target = e.target;
+        
+        // Handle remove button
+        if (target.classList.contains('remove-btn')) {
+          const drinkId = parseInt(target.getAttribute('data-id'));
+          removeItem(drinkId);
+        }
+        
+        // Handle quantity buttons
+        if (target.classList.contains('quantity-btn')) {
+          const drinkId = parseInt(target.getAttribute('data-id'));
+          const action = target.getAttribute('data-action');
+          const currentQuantity = parseInt(target.parentElement.querySelector('.quantity-input').value);
+          
+          if (action === 'decrease') {
+            updateItemQuantity(drinkId, currentQuantity - 1);
+          } else if (action === 'increase') {
+            updateItemQuantity(drinkId, currentQuantity + 1);
+          }
+        }
+        
+        // Handle checkout button
+        if (target.classList.contains('checkout-btn')) {
+          checkout();
+        }
+      });
+      
+      // Handle quantity input changes
+      cartContent.addEventListener('change', (e) => {
+        if (e.target.classList.contains('quantity-input')) {
+          const drinkId = parseInt(e.target.getAttribute('data-id'));
+          const newQuantity = parseInt(e.target.value);
+          updateItemQuantity(drinkId, newQuantity);
+        }
+      });
+    });
+
+    function renderCart() {
+      const cartItems = window.cartModule.getCartItems();
+      const cartContent = document.getElementById('cart-content');
+
+      if (cartItems.length === 0) {
+        cartContent.innerHTML = `
+          <div class="cart-empty">
+            <p>Your cart is empty</p>
+            <a href="index.html" class="btn">Start Shopping</a>
+          </div>
+        `;
+        return;
+      }
+
+      // Calculate totals
+      const total = window.cartModule.getTotal();
+
+      // Render cart items
+      const cartItemsHTML = cartItems.map(item => {
+        const drink = item.drink;
+        const itemPrice = window.drinksModule.getDiscountedPrice(drink);
+        const itemTotal = itemPrice * item.quantity;
+
+        return `
+          <div class="cart-item" data-id="${drink.id}">
+            <div class="cart-item-image" style="background: linear-gradient(135deg, ${drink.color} 0%, ${drink.color}88 100%);">
+              🥤
+            </div>
+            <div class="cart-item-details">
+              <h3>${drink.name}</h3>
+              <p class="cart-item-type">${drink.type}</p>
+            </div>
+            <div class="cart-item-quantity">
+              <button class="quantity-btn" data-id="${drink.id}" data-action="decrease">−</button>
+              <input 
+                type="number" 
+                class="quantity-input" 
+                value="${item.quantity}" 
+                min="1" 
+                max="${drink.amount}"
+                data-id="${drink.id}"
+              >
+              <button class="quantity-btn" data-id="${drink.id}" data-action="increase">+</button>
+            </div>
+            <div class="cart-item-price">
+              $${itemTotal.toFixed(2)}
+            </div>
+            <button class="remove-btn" data-id="${drink.id}">Remove</button>
+          </div>
+        `;
+      }).join('');
+
+      cartContent.innerHTML = `
+        <div class="cart-items">
+          ${cartItemsHTML}
+        </div>
+        <div class="cart-summary">
+          <div class="summary-row">
+            <span>Subtotal:</span>
+            <span>$${total.toFixed(2)}</span>
+          </div>
+          <div class="summary-row total">
+            <span>Total:</span>
+            <span>$${total.toFixed(2)}</span>
+          </div>
+          <button class="checkout-btn">Proceed to Checkout</button>
+        </div>
+      `;
+    }
+
+    function updateItemQuantity(drinkId, newQuantity) {
+      const quantity = parseInt(newQuantity);
+      if (isNaN(quantity) || quantity < 1) {
+        return;
+      }
+
+      window.cartModule.updateQuantity(drinkId, quantity);
+      renderCart();
+    }
+
+    function removeItem(drinkId) {
+      const result = window.cartModule.removeFromCart(drinkId);
+      if (result.success) {
+        window.uiModule.showToast('Item removed from cart', 'success');
+        renderCart();
+      }
+    }
+
+    function checkout() {
+      if (!window.authModule.isLoggedIn()) {
+        window.uiModule.showToast('Please login to checkout', 'warning');
+        setTimeout(() => {
+          window.location.href = 'login.html';
+        }, 1500);
+        return;
+      }
+
+      // Simulate checkout
+      window.uiModule.showToast('Order placed successfully!', 'success');
+      window.cartModule.clearCart();
+      
+      setTimeout(() => {
+        window.location.href = 'account.html';
+      }, 2000);
+    }
+  </script>
+</body>
+</html>

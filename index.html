@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cloo - Refresh Your Day</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="header-left">
+      <button class="hamburger-menu" aria-label="Open menu">☰</button>
+      <div class="logo">CLOO</div>
+    </div>
+    <div class="header-right">
+      <button class="account-icon" aria-label="Account">👤</button>
+      <div class="cart-wrapper">
+        <button class="cart-icon" aria-label="Cart">🛒</button>
+        <span class="cart-badge">0</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Side Navigation Menu -->
+  <div class="menu-overlay"></div>
+  <nav class="side-menu">
+    <div class="menu-header">
+      <h2>Menu</h2>
+      <button class="close-menu" aria-label="Close menu">×</button>
+    </div>
+    <ul class="menu-links">
+      <li><a href="index.html">🏠 Home</a></li>
+      <li><a href="search.html">🔍 Search</a></li>
+      <li><a href="index.html#products">🥤 All Drinks</a></li>
+      <li><a href="cart.html">🛒 Cart</a></li>
+      <li><a href="account.html">👤 Account</a></li>
+    </ul>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <!-- Hero Section with Parallax -->
+    <section class="hero-section">
+      <div class="hero-background"></div>
+      <div class="hero-content">
+        <div class="hero-drink-image">🥤</div>
+        <div class="hero-text">
+          <h1>Refresh Your Day</h1>
+          <p>Discover our collection of refreshing drinks</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Products Grid Section -->
+    <section class="products-section" id="products">
+      <h2 class="section-title">Our Drinks Collection</h2>
+      <div class="drinks-grid" id="drinks-grid"></div>
+    </section>
+  </main>
+
+  <!-- Scripts -->
+  <script src="js/drinks.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    // Initialize home page
+    document.addEventListener('DOMContentLoaded', () => {
+      const drinks = window.drinksModule.getAllDrinks();
+      window.uiModule.renderDrinksGrid(drinks, 'drinks-grid');
+    });
+  </script>
+</body>
+</html>

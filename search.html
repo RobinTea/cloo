@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Search - Cloo</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="header-left">
+      <button class="hamburger-menu" aria-label="Open menu">☰</button>
+      <div class="logo">CLOO</div>
+    </div>
+    <div class="header-right">
+      <button class="account-icon" aria-label="Account">👤</button>
+      <div class="cart-wrapper">
+        <button class="cart-icon" aria-label="Cart">🛒</button>
+        <span class="cart-badge">0</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Side Navigation Menu -->
+  <div class="menu-overlay"></div>
+  <nav class="side-menu">
+    <div class="menu-header">
+      <h2>Menu</h2>
+      <button class="close-menu" aria-label="Close menu">×</button>
+    </div>
+    <ul class="menu-links">
+      <li><a href="index.html">🏠 Home</a></li>
+      <li><a href="search.html">🔍 Search</a></li>
+      <li><a href="index.html#products">🥤 All Drinks</a></li>
+      <li><a href="cart.html">🛒 Cart</a></li>
+      <li><a href="account.html">👤 Account</a></li>
+    </ul>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <div class="search-container">
+      <h1 class="search-heading">Find Your Perfect Drink</h1>
+      <div class="search-bar">
+        <input 
+          type="text" 
+          class="search-input" 
+          id="search-input" 
+          placeholder="Search by name, type, or color..."
+          autocomplete="off"
+        >
+        <span class="search-icon">🔍</span>
+      </div>
+    </div>
+
+    <div class="search-results">
+      <div class="drinks-grid" id="search-results-grid"></div>
+    </div>
+  </main>
+
+  <!-- Scripts -->
+  <script src="js/drinks.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    // Initialize search page
+    document.addEventListener('DOMContentLoaded', () => {
+      const searchInput = document.getElementById('search-input');
+      const resultsGrid = document.getElementById('search-results-grid');
+
+      // Show all drinks initially
+      const allDrinks = window.drinksModule.getAllDrinks();
+      window.uiModule.renderDrinksGrid(allDrinks, 'search-results-grid');
+
+      // Handle search input
+      searchInput.addEventListener('input', (e) => {
+        const query = e.target.value;
+        const results = window.drinksModule.searchDrinks(query);
+        window.uiModule.renderDrinksGrid(results, 'search-results-grid');
+      });
+    });
+  </script>
+</body>
+</html>

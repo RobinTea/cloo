@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Account - Cloo</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="header-left">
+      <button class="hamburger-menu" aria-label="Open menu">☰</button>
+      <div class="logo">CLOO</div>
+    </div>
+    <div class="header-right">
+      <button class="account-icon" aria-label="Account">👤</button>
+      <div class="cart-wrapper">
+        <button class="cart-icon" aria-label="Cart">🛒</button>
+        <span class="cart-badge">0</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Side Navigation Menu -->
+  <div class="menu-overlay"></div>
+  <nav class="side-menu">
+    <div class="menu-header">
+      <h2>Menu</h2>
+      <button class="close-menu" aria-label="Close menu">×</button>
+    </div>
+    <ul class="menu-links">
+      <li><a href="index.html">🏠 Home</a></li>
+      <li><a href="search.html">🔍 Search</a></li>
+      <li><a href="index.html#products">🥤 All Drinks</a></li>
+      <li><a href="cart.html">🛒 Cart</a></li>
+      <li><a href="account.html">👤 Account</a></li>
+    </ul>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <div class="account-container" id="account-container">
+      <p style="text-align: center; padding: 60px; color: var(--text-secondary);">Loading...</p>
+    </div>
+  </main>
+
+  <!-- Scripts -->
+  <script src="js/drinks.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    // Initialize account page
+    document.addEventListener('DOMContentLoaded', () => {
+      // Check if user is logged in
+      if (!window.authModule.isLoggedIn()) {
+        window.location.href = 'login.html';
+        return;
+      }
+
+      const user = window.authModule.getCurrentUser();
+      
+      // Render account information
+      document.getElementById('account-container').innerHTML = `
+        <div class="account-header">
+          <h1 class="account-title">My Account</h1>
+          <button class="logout-btn" id="logout-btn">Logout</button>
+        </div>
+
+        <div class="user-info">
+          <div class="info-item">
+            <span class="info-label">Username:</span>
+            <span class="info-value">${user.username}</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Email:</span>
+            <span class="info-value">${user.email}</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Member Since:</span>
+            <span class="info-value">Recently</span>
+          </div>
+        </div>
+
+        <div style="margin-top: 30px;">
+          <h2 style="font-size: 24px; margin-bottom: 15px; color: var(--text-primary);">Order History</h2>
+          <p style="color: var(--text-secondary); padding: 20px; background: var(--background-color); border-radius: var(--border-radius); text-align: center;">
+            No orders yet. Start shopping to see your order history!
+          </p>
+        </div>
+
+        <div style="margin-top: 30px; text-align: center;">
+          <a href="index.html" class="btn">Continue Shopping</a>
+        </div>
+      `;
+
+      // Setup logout button
+      document.getElementById('logout-btn').addEventListener('click', () => {
+        const result = window.authModule.logout();
+        if (result.success) {
+          window.uiModule.showToast('Logged out successfully', 'success');
+          setTimeout(() => {
+            window.location.href = 'index.html';
+          }, 1000);
+        }
+      });
+    });
+  </script>
+</body>
+</html>
