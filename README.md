@@ -16,4 +16,5 @@ The **GOAL** of this project is to improve my frontend and backend skills.
 
 thanks you [sleepz](https://github.com/sleepz103) for helping me understand the theoretical part better.
 
-
+other experiences I learned:
+- I personally cant work with one single style.css file -> I need multiple 
