@@ -1,0 +1,28 @@
+/* CSS Variables for theming */
+:root {
+  --primary-color: #00a8cc;
+  --primary-dark: #0077b6;
+  --primary-light: #48cae4;
+  --secondary-color: #023e8a;
+  --accent-color: #00b4d8;
+  --background-color: #f8f9fa;
+  --surface-color: #ffffff;
+  --text-primary: #212529;
+  --text-secondary: #6c757d;
+  --border-color: #dee2e6;
+  --error-color: #dc3545;
+  --success-color: #28a745;
+  --warning-color: #ffc107;
+  
+  --shadow-sm: 0 2px 4px rgba(0,0,0,0.1);
+  --shadow-md: 0 4px 8px rgba(0,0,0,0.12);
+  --shadow-lg: 0 8px 16px rgba(0,0,0,0.15);
+  
+  --border-radius: 8px;
+  --border-radius-lg: 12px;
+  
+  --transition: all 0.3s ease;
+  
+  --header-height: 60px;
+  --max-width: 1200px;
+}

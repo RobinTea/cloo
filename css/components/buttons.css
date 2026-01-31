@@ -1,0 +1,21 @@
+/* Utility Classes */
+.btn {
+  padding: 10px 20px;
+  background: var(--primary-color);
+  color: white;
+  border-radius: var(--border-radius);
+  font-weight: 600;
+  transition: var(--transition);
+}
+
+.btn:hover {
+  background: var(--primary-dark);
+}
+
+.btn-secondary {
+  background: var(--text-secondary);
+}
+
+.btn-secondary:hover {
+  background: var(--text-primary);
+}

@@ -1,0 +1,131 @@
+/* Auth Pages */
+.auth-container {
+  max-width: 450px;
+  margin: 80px auto;
+  padding: 40px;
+  background: var(--surface-color);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-md);
+}
+
+.auth-title {
+  font-size: 32px;
+  text-align: center;
+  margin-bottom: 30px;
+  color: var(--text-primary);
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.form-input {
+  width: 100%;
+  padding: 12px 15px;
+  font-size: 16px;
+  border: 2px solid var(--border-color);
+  border-radius: var(--border-radius);
+  transition: var(--transition);
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(0,168,204,0.1);
+}
+
+.submit-btn {
+  width: 100%;
+  padding: 14px;
+  background: var(--primary-color);
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: var(--border-radius);
+  margin-top: 10px;
+  transition: var(--transition);
+}
+
+.submit-btn:hover {
+  background: var(--primary-dark);
+}
+
+.auth-link {
+  text-align: center;
+  margin-top: 20px;
+  color: var(--text-secondary);
+}
+
+.auth-link a {
+  color: var(--primary-color);
+  font-weight: 600;
+}
+
+.auth-link a:hover {
+  text-decoration: underline;
+}
+
+/* Account Page */
+.account-container {
+  max-width: 800px;
+  margin: 80px auto;
+  padding: 40px;
+  background: var(--surface-color);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-md);
+}
+
+.account-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  padding-bottom: 20px;
+  border-bottom: 2px solid var(--border-color);
+}
+
+.account-title {
+  font-size: 32px;
+  color: var(--text-primary);
+}
+
+.logout-btn {
+  padding: 10px 20px;
+  background: var(--error-color);
+  color: white;
+  font-weight: 600;
+  border-radius: var(--border-radius);
+  transition: var(--transition);
+}
+
+.logout-btn:hover {
+  background: #c82333;
+}
+
+.user-info {
+  margin-bottom: 30px;
+}
+
+.info-item {
+  display: flex;
+  padding: 15px 0;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.info-label {
+  font-weight: 600;
+  width: 150px;
+  color: var(--text-secondary);
+}
+
+.info-value {
+  flex: 1;
+  color: var(--text-primary);
+}
