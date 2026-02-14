@@ -1,5 +1,7 @@
 # CLOO
 
+The **GOAL** of this project is to improve my frontend and backend skills.
+
 cloo comes from clue, cause at the moment, I dont have much of a clue before (getting better now though).
 but thinking now, it could also come from cool...
 
@@ -12,9 +14,10 @@ why drinks? its easy to model in blender, its just a tube (cylinder) after all.
 I always wanted to make something shop-like.
 It's difficult to explain but I'm magicaly drawn to it.
 
-The **GOAL** of this project is to improve my frontend and backend skills.
+---
 
 thanks you [sleepz](https://github.com/sleepz103) for helping me understand the theoretical part better.
 
 other experiences I learned:
 - I personally cant work with one single style.css file -> I need multiple 
+- too use variables for colors draws pro and cons with it
