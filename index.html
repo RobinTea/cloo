@@ -11,16 +11,35 @@
   <header class="header">
     <div class="header-left">
       <button class="hamburger-menu" aria-label="Open menu">☰</button>
-      <div class="logo">CLOO</div>
+      <div class="logo"><a href="index.html">CLOO</a></div>
     </div>
     <div class="header-right">
-      <button class="account-icon" aria-label="Account">👤</button>
+      <button class="account-icon" aria-label="Account"><img src="svg/user.svg" alt="User" width="25" height="25"/></button>
       <div class="cart-wrapper">
-        <button class="cart-icon" aria-label="Cart">🛒</button>
+        <button class="cart-icon" aria-label="Cart"><img src="svg/cart.svg" alt="Cart" width="25" height="25"/></button>
         <span class="cart-badge">0</span>
       </div>
     </div>
   </header>
+
+  <div id="splash" onclick="this.classList.add('hidden')">
+    <img src="img/cloo-black.png" width="400" height="400">
+    <div class="logo">CLOO</div>
+  </div>
+
+  <canvas id="noise-canvas"></canvas>
+
+  <div class="scroll-container">
+    <div class="video-wrapper">
+      <video
+        id="scroll-video"
+        src="vid/cancan.mkv"
+        muted
+        playsinline
+        preload="auto"
+      ></video>
+    </div>
+  </div>
 
   <!-- Side Navigation Menu -->
   <div class="menu-overlay"></div>
@@ -40,24 +59,32 @@
 
   <!-- Main Content -->
   <main class="main-content">
-    <!-- Hero Section with Parallax -->
-    <section class="hero-section">
-      <div class="hero-background"></div>
-      <div class="hero-content">
-        <div class="hero-drink-image">🥤</div>
-        <div class="hero-text">
-          <h1>Refresh Your Day</h1>
-          <p>Discover our collection of refreshing drinks</p>
-        </div>
-      </div>
-    </section>
 
     <!-- Products Grid Section -->
     <section class="products-section" id="products">
       <h2 class="section-title">Our Drinks Collection</h2>
       <div class="drinks-grid" id="drinks-grid"></div>
     </section>
+    
+    
   </main>
+
+  <footer class="footer">
+    <div>
+      <div class="logo">CLOO - a fictional drink shop</div>
+    </div>
+    
+    <p class="footer-credit">Created by RobinTea</p>
+    <div class="footer-disclaimer">All names and trademarks are fictional. Any resemblance to real entities is purely coincidental.</div>
+    
+    <div class="footer-links">
+      <a href="index.html">Home</a>
+      <a href="search.html">Search</a>
+      <a href="index.html#products">All Drinks</a>
+      <a href="cart.html">Cart</a>
+      <a href="account.html">Account</a>
+    </div>
+  </footer>
 
   <!-- Scripts -->
   <script src="js/drinks.js"></script>

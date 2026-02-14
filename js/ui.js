@@ -134,3 +134,88 @@ window.uiModule = {
   renderDrinksGrid,
   updateAccountMenu
 };
+
+//splash
+const canvas = document.getElementById("noise-canvas");
+const ctx = canvas.getContext("2d");
+const splash = document.getElementById("splash");
+
+
+document.body.classList.add("no-scroll");
+
+function dismissSplash() {
+  if (splash.classList.contains("hidden")) return;
+
+  splash.classList.add("hidden");
+
+  splash.addEventListener("transitionend", () => {
+    splash.style.display = "none";
+    document.body.classList.remove("no-scroll");
+
+    window.scrollTo(0, 0);
+  }, { once: true });
+}
+
+splash.addEventListener("click", dismissSplash);
+setTimeout(dismissSplash, 3000); 
+
+
+//vid vid vid 
+const video = document.getElementById("scroll-video");
+const container = document.querySelector(".scroll-container");
+
+function handleScroll() {
+  const containerTop = container.offsetTop;
+  const containerHeight = container.offsetHeight - window.innerHeight;
+
+  if (containerHeight <= 0) return;
+
+  const scrolled = (window.scrollY - containerTop) / containerHeight;
+  const progress = Math.min(Math.max(scrolled, 0), 1);
+
+  if (video.duration && isFinite(video.duration)) {
+    video.currentTime = progress * video.duration;
+  }
+}
+
+//load
+video.play().then(() => {
+  video.pause();
+}).catch(() => {});
+
+video.addEventListener("loadedmetadata", () => {
+  window.addEventListener("scroll", handleScroll);
+});
+
+// Reload case
+if (video.readyState >= 1) {
+  window.addEventListener("scroll", handleScroll);
+}
+
+
+//noise noise nosie
+function resize() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+
+function generateNoise() {
+  const imageData = ctx.createImageData(canvas.width, canvas.height);
+  const data = imageData.data;
+
+  for (let i = 0; i < data.length; i += 4) {
+    const value = Math.random() * 255;
+    data[i] = value;       // Red
+    data[i + 1] = value;   // Green
+    data[i + 2] = value;   // Blue
+    data[i + 3] = 255;     
+  }
+
+  ctx.putImageData(imageData, 0, 0);
+  requestAnimationFrame(generateNoise);
+}
+
+window.addEventListener("resize", resize);
+resize();
+generateNoise();
+

@@ -59,35 +59,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
   
-  // Parallax effect for home page hero section
-  if (document.querySelector('.hero-section')) {
-    let ticking = false;
-    
-    window.addEventListener('scroll', () => {
-      if (!ticking) {
-        window.requestAnimationFrame(() => {
-          handleParallax();
-          ticking = false;
-        });
-        ticking = true;
-      }
-    });
-    
-    function handleParallax() {
-      const heroSection = document.querySelector('.hero-section');
-      const drinkImage = document.querySelector('.hero-drink-image');
-      
-      if (!heroSection || !drinkImage) return;
-      
-      const heroRect = heroSection.getBoundingClientRect();
-      const scrollProgress = Math.max(0, -heroRect.top);
-      const heroHeight = heroSection.offsetHeight;
-      
-      // Only apply parallax while hero section is visible
-      if (heroRect.bottom > 0) {
-        const parallaxAmount = scrollProgress * 0.5;
-        drinkImage.style.transform = `translateY(${parallaxAmount}px)`;
-      }
-    }
-  }
 });
+
+

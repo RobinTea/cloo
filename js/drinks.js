@@ -7,7 +7,7 @@ const DEFAULT_DRINKS = [
   {
     id: 1,
     type: "premium edition",
-    color: "black",
+    color: "blackalksdöjf lkajsdf , alskdfj",
     name: "CoolDrink1",
     price: 18,
     discount: 2,
@@ -18,7 +18,7 @@ const DEFAULT_DRINKS = [
     id: 2,
     type: "classic",
     color: "blue",
-    name: "OceanWave",
+    name: "trivialRefresh",
     price: 12,
     discount: 0,
     amount: 5000,

@@ -1,4 +1,9 @@
 /* Product Detail Page */
+.main-content {
+  margin-top: var(--header-height);
+  min-height: calc(100vh - var(--header-height));
+}
+
 .product-detail {
   max-width: var(--max-width);
   margin: 0 auto;

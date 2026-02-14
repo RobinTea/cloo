@@ -9,7 +9,7 @@
   padding: 15px 25px;
   border-radius: var(--border-radius-lg);
   box-shadow: var(--shadow-lg);
-  z-index: 2000;
+  z-index: 1001;
   transition: bottom 0.3s ease;
   min-width: 250px;
   text-align: center;

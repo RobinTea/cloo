@@ -1,0 +1,17 @@
+.scroll-container {
+  height: 250vh; /* 5x the screen height = more scroll room = slower playback */
+}
+
+.video-wrapper {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}

@@ -1,6 +1,6 @@
 /* Drink Card */
 .drink-card {
-  background: var(--surface-color);
+  background: var(--background-color);
   border-radius: var(--border-radius-lg);
   overflow: hidden;
   box-shadow: var(--shadow-sm);
@@ -10,11 +10,12 @@
   display: block;
   text-decoration: none;
   color: inherit;
+  filter: grayscale(1.05);
 }
 
 .drink-card:hover {
-  transform: translateY(-5px);
   box-shadow: var(--shadow-lg);
+  filter: grayscale(0);
 }
 
 .drink-image {
@@ -34,7 +35,7 @@
   position: absolute;
   top: 12px;
   right: 12px;
-  background: rgba(255,255,255,0.95);
+  background: var(--text-secondary);
   color: var(--text-primary);
   padding: 4px 10px;
   border-radius: 20px;
@@ -64,19 +65,19 @@
 .price {
   font-size: 20px;
   font-weight: bold;
-  color: var(--primary-color);
+  color: var(--text);
 }
 
 .original-price {
   font-size: 16px;
-  color: var(--text-secondary);
+  color: var(--primary-color);
   text-decoration: line-through;
 }
 
 .discounted-price {
   font-size: 20px;
   font-weight: bold;
-  color: var(--error-color);
+  color: var(--text);
 }
 
 .discount-badge {

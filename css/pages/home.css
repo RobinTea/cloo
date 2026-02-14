@@ -1,14 +1,13 @@
 /* Main content container */
 .main-content {
   margin-top: var(--header-height);
-  min-height: calc(100vh - var(--header-height));
+  min-height: calc(20vh - var(--header-height));
 }
 
 /* Hero Section */
 .hero-section {
   position: relative;
-  height: 500px;
-  background: linear-gradient(135deg, #00a8cc 0%, #48cae4 100%);
+  height: 20vh;
   overflow: hidden;
   display: flex;
   align-items: center;
@@ -21,7 +20,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><path fill="%23ffffff" fill-opacity="0.1" d="M0,300 Q300,200 600,300 T1200,300 L1200,600 L0,600 Z"/></svg>') no-repeat center bottom;
+  background: var(--background-color) no-repeat center bottom;
   background-size: cover;
 }
 
@@ -33,7 +32,8 @@
 }
 
 .hero-drink-image {
-  font-size: 120px;
+  height: 1000px;
+
   margin-bottom: 20px;
   filter: drop-shadow(0 10px 20px rgba(0,0,0,0.3));
   will-change: transform;
@@ -67,6 +67,6 @@
 
 .drinks-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 24px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4px;
 }
