@@ -26,7 +26,7 @@ at the moment I save the things in local storage and run it locally but plan to 
 
 ---
 
-thanks you [sleepz](https://github.com/sleepz103) for helping me understand the theoretical part (Backend) better.
+thanks to [sleepz](https://github.com/sleepz103) for helping me understand the theoretical part (Backend) better.
 
 other experiences I learned:
 - I personally cant work with one single style.css file -> I need multiple
