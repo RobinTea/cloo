@@ -33,3 +33,4 @@ other experiences I learned:
 - asking ai for a beginning "can" save alot of time if its simple, else you will debug for a very long time and spend alot with understanding the code.
 - too use variables for colors draws pro and cons with it
 - cause of my animation at the beginning I wanted smooth scrolling. mine was meh so i used [lenis](https://lenis.darkroom.engineering/)
+- using a lot of effects uses a lot of ressources, which is why optimizing is so important -> switched from noise generator to using a texture / using webp for the home animation instead of mp4 removing the need to calculate the position every frame.
