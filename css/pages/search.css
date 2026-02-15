@@ -7,8 +7,9 @@
 }
 
 .search-heading {
-  font-size: 42px;
-  margin-bottom: 30px;
+  font-family: "Roboto Mono";
+  font-size: 6rem;
+  margin-bottom: 5rem;
   color: var(--text-primary);
 }
 

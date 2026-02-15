@@ -11,16 +11,18 @@
   <header class="header">
     <div class="header-left">
       <button class="hamburger-menu" aria-label="Open menu">☰</button>
-      <div class="logo">CLOO</div>
+      <div class="logo"><a href="index.html">CLOO</a></div>
     </div>
     <div class="header-right">
-      <button class="account-icon" aria-label="Account">👤</button>
+      <button class="account-icon" aria-label="Account"><img src="svg/user.svg" alt="User" width="25" height="25"/></button>
       <div class="cart-wrapper">
-        <button class="cart-icon" aria-label="Cart">🛒</button>
+        <button class="cart-icon" aria-label="Cart"><img src="svg/cart.svg" alt="Cart" width="25" height="25"/></button>
         <span class="cart-badge">0</span>
       </div>
     </div>
   </header>
+
+  <canvas id="noise-canvas"></canvas>
 
   <!-- Side Navigation Menu -->
   <div class="menu-overlay"></div>
@@ -39,11 +41,37 @@
 
   <!-- Main Content -->
   <main class="main-content">
+    
+    <button class="back-button" onclick="window.location.href='search.html'">
+      <img src="svg/arrow-left.svg" alt="Back" width="20" height="20">
+      Back
+    </button>
+
     <div class="cart-container">
       <h1 class="cart-title">Shopping Cart</h1>
       <div id="cart-content"></div>
     </div>
+
+    <div class="cart-finish">
+      <img src="img/cloo-black.png" width="400" height="400">
+    <div class="logo">CLOO</div>
+  </div>
   </main>
+
+  <footer class="footer">
+    <div>
+      <div class="logo">CLOO - a fictional drink shop</div>
+    </div>
+    <p class="footer-credit">Created by RobinTea</p>
+    <div class="footer-disclaimer">All names and trademarks are fictional. Any resemblance to real entities is purely coincidental.</div>
+    <div class="footer-links">
+      <a href="index.html">Home</a>
+      <a href="search.html">Search</a>
+      <a href="cart.html">Cart</a>
+      <a href="account.html">Account</a>
+    </div>
+  </footer>
+
 
   <!-- Scripts -->
   <script src="js/drinks.js"></script>
@@ -122,7 +150,7 @@
         return `
           <div class="cart-item" data-id="${drink.id}">
             <div class="cart-item-image" style="background: linear-gradient(135deg, ${drink.color} 0%, ${drink.color}88 100%);">
-              🥤
+              <img class="cart-img" src="img/can/${drink.id}.png" alt="${drink.name}">
             </div>
             <div class="cart-item-details">
               <h3>${drink.name}</h3>
