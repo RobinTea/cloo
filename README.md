@@ -32,3 +32,4 @@ other experiences I learned:
 - I personally cant work with one single style.css file -> I need multiple
 - asking ai for a beginning "can" save alot of time if its simple, else you will debug for a very long time and spend alot with understanding the code.
 - too use variables for colors draws pro and cons with it
+- cause of my animation at the beginning I wanted smooth scrolling. mine was meh so i used [lenis](https://lenis.darkroom.engineering/)
