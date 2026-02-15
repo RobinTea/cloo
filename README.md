@@ -5,7 +5,7 @@ The **GOAL** of this project is to improve my frontend and backend skills.
 ## what
 CLOO is a fictional drink shop that I plan to host on a raspberry pi or similar to gain more backend and frontend experience.
 
-<img height="400" alt="image" src="https://github.com/user-attachments/assets/19417d29-f3b8-4842-b87e-845673a3d256" />
+<img height="400" alt="image" src="https://github.com/user-attachments/assets/37ca6d96-69f2-4dde-9669-7e2f39bcef07" />
 
 ## why
 why drinks? its easy to model in blender, its just a tube (cylinder) after all.
@@ -34,3 +34,5 @@ other experiences I learned:
 - too use variables for colors draws pro and cons with it
 - cause of my animation at the beginning I wanted smooth scrolling. mine was meh so i used [lenis](https://lenis.darkroom.engineering/)
 - using a lot of effects uses a lot of ressources, which is why optimizing is so important -> switched from noise generator to using a texture / using webp for the home animation instead of mp4 removing the need to calculate the position every frame.
+
+<img height="400" alt="image" src="https://github.com/user-attachments/assets/19417d29-f3b8-4842-b87e-845673a3d256" />
