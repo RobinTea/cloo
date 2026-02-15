@@ -33,7 +33,8 @@ other experiences I learned:
 - asking ai for a beginning "can" save alot of time if its simple, else you will debug for a very long time and spend alot with understanding the code.
 - too use variables for colors draws pro and cons with it
 - cause of my animation at the beginning I wanted smooth scrolling. mine was meh so i used [lenis](https://lenis.darkroom.engineering/)
-- using a lot of effects uses a lot of ressources, which is why optimizing is so important -> switched from noise generator to using a texture / using webp for the home animation instead of mp4 removing the need to calculate the position every frame.
-- about three projects ago I used to drag and drop the files into github. I was scared of git because there was an error even my teacher couldn't solve. But after reinstalling, I have come to like it. 
+- using a lot of effects uses a lot of ressources, which is why optimizing is so important -> switched from noise generator to using a texture / using webp for the home animation instead of mp4 removing the need to calculate the position every frame. bringin down my loading time from 2s to 0.5s
+- about three projects ago I used to drag and drop the files into github. I was scared of Git because there was an error even my teacher couldn't solve. But after reinstalling, I have come to like Git.
+- after analysing what used the most time to load, the conclusion was that the pngs has more than a second to load. totaling my loading time to 2.7s  with further minor laggs when it requests product details.
 
 <img height="400" alt="image" src="https://github.com/user-attachments/assets/19417d29-f3b8-4842-b87e-845673a3d256" />
