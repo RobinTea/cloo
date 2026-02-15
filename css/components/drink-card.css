@@ -26,9 +26,10 @@
   position: relative;
 }
 
-.drink-placeholder {
-  font-size: 80px;
-  opacity: 0.8;
+.drink-img {
+  height: 25rem;
+  z-index: -1;
+  opacity: 1;
 }
 
 .drink-type-badge {

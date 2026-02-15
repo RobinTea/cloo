@@ -11,8 +11,12 @@ body {
   font-weight: 300;
   color: var(--text-primary);
   background-color: var(--background-color);
-  
-  overflow-x: hidden;
+  /*overflow-x: hidden;*/
+}
+
+body.no-scroll {
+  overflow: hidden;
+  height: 100vh;
 }
 
 h1 {
@@ -46,7 +50,7 @@ input, textarea {
   height: 100%;
   pointer-events: none;
   z-index: 9999;
-  opacity: 0.04; 
+  opacity: 0.11; 
 }
 
 #splash {
@@ -91,7 +95,7 @@ input, textarea {
   transform: translateY(-100%);
   pointer-events: none;
   visibility: hidden;
-  
+
   /*
   overflow: visible;
   */

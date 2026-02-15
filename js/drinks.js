@@ -6,9 +6,9 @@ const DRINKS_STORAGE_KEY = 'cloo_drinks';
 const DEFAULT_DRINKS = [
   {
     id: 1,
-    type: "premium edition",
-    color: "blackalksdöjf lkajsdf , alskdfj",
-    name: "CoolDrink1",
+    type: "classic",
+    color: "brown",
+    name: "CLOO Original",
     price: 18,
     discount: 2,
     amount: 19888,
